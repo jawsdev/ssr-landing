@@ -1,4 +1,3 @@
-// app/personalized/page.js
 import React from 'react';
 
 async function getUserData() {
@@ -16,12 +15,14 @@ export default async function Page() {
   const timestamp = new Date().toLocaleString();
 
   return (
-    <div>
-      <h1>Personalized Content Example</h1>
-      <p>Rendered at: {timestamp}</p>
-      <h2>Welcome, {user.name}!</h2>
-      <h3>Your Email: {user.email}</h3>
-      <h4>Company: {user.company.name}</h4>
+    <div className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-4">Personalized Content Example</h1>
+      <p className="text-gray-600 mb-8">Rendered at: {timestamp}</p>
+      <div className="p-6 bg-white rounded-lg shadow-md">
+        <h2 className="text-2xl font-semibold text-gray-700">Welcome, {user.name}!</h2>
+        <p className="text-gray-600 mt-2">Email: {user.email}</p>
+        <p className="text-gray-600 mt-2">Company: {user.company.name}</p>
+      </div>
     </div>
   );
 }

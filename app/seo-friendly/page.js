@@ -1,4 +1,3 @@
-// app/seo-friendly/page.js
 import React from 'react';
 
 async function getProductData() {
@@ -16,14 +15,14 @@ export default async function Page() {
   const timestamp = new Date().toLocaleString();
 
   return (
-    <div>
-      <h1>SEO-Friendly Content Example</h1>
-      <p>Rendered at: {timestamp}</p>
-      <div className="products-grid">
+    <div className="min-h-screen bg-gray-50 p-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-4">SEO-Friendly Content Example</h1>
+      <p className="text-gray-600 mb-8">Rendered at: {timestamp}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.slice(0, 5).map((product) => (
-          <div key={product.id} className="product-card">
-            <h2>{product.title}</h2>
-            <p>{product.body}</p>
+          <div key={product.id} className="p-4 bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl font-semibold text-gray-700">{product.title}</h2>
+            <p className="text-gray-600 mt-2">{product.body}</p>
           </div>
         ))}
       </div>
