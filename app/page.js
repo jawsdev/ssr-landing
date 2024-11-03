@@ -1,25 +1,23 @@
-import Head from 'next/head';
+import React from 'react';
 
-export default function Home({ data }) {
-  return (
-    <div>
-      <Head>
-        <title>My Landing Page</title>
-        <meta name="description" content="Welcome to my landing page" />
-      </Head>
-      <main>
-        <h1>Welcome to My Landing Page</h1>
-        <p>{data.message}</p>
-      </main>
-    </div>
-  );
+async function getData() {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  if (!response.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  const data = await response.json();
+  return data;
 }
 
-export async function getServerSideProps() {
-  // Simulate fetching data from an API or database
-  const data = { message: 'Hello from the server!' };
+export default async function Page() {
+  const data = await getData();
+  const timestamp = new Date().toLocaleString(); // Get the current timestamp
 
-  return {
-    props: { data },
-  };
+  return (
+    <div>
+      <h1>Welcome to My Landing Page</h1>
+      <p>{data.title}</p>
+      <p>Rendered at: {timestamp}</p> {/* Display the timestamp */}
+    </div>
+  );
 }
