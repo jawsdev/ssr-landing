@@ -1,7 +1,10 @@
 import React from 'react';
 
 async function getData() {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  // Make sure caching is disabled for server-side freshness
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1', {
+    cache: 'no-store', // Prevent caching
+  });
   if (!response.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -17,7 +20,7 @@ export default async function Page() {
     <div>
       <h1>Welcome to My Landing Page</h1>
       <p>{data.title}</p>
-      <p>Rendered at: {timestamp}</p> {/* Display the timestamp */}
+      <p>Rendered at: {timestamp}</p>
     </div>
   );
 }
