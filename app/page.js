@@ -1,15 +1,25 @@
-const currentTime = new Date().toLocaleString();
-console.log(`Page rendered at: ${currentTime}`);
+import Head from 'next/head';
 
-export default function Home() {
+export default function Home({ data }) {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
-      <h1 className="text-5xl font-bold text-white mb-4">
-        Welcome to My SSR Landing Page
-      </h1>
-      <p className="text-xl text-white mb-8">
-        Current Server Time: {currentTime}
-      </p>
-    </main>
+    <div>
+      <Head>
+        <title>My Landing Page</title>
+        <meta name="description" content="Welcome to my landing page" />
+      </Head>
+      <main>
+        <h1>Welcome to My Landing Page</h1>
+        <p>{data.message}</p>
+      </main>
+    </div>
   );
+}
+
+export async function getServerSideProps() {
+  // Simulate fetching data from an API or database
+  const data = { message: 'Hello from the server!' };
+
+  return {
+    props: { data },
+  };
 }
