@@ -1,26 +1,22 @@
-import React from 'react';
+import Link from 'next/link';
 
-async function getData() {
-  // Make sure caching is disabled for server-side freshness
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos/1', {
-    cache: 'no-store', // Prevent caching
-  });
-  if (!response.ok) {
-    throw new Error('Failed to fetch data');
-  }
-  const data = await response.json();
-  return data;
-}
-
-export default async function Page() {
-  const data = await getData();
-  const timestamp = new Date().toLocaleString(); // Get the current timestamp
-
+export default function Page() {
   return (
     <div>
-      <h1>Welcome to My Landing Page</h1>
-      <p>{data.title}</p>
-      <p>Rendered at: {timestamp}</p>
+      <h1>Welcome to My SSR Examples</h1>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/dynamic">Dynamic Content Example</Link>
+          </li>
+          <li>
+            <Link href="/personalized">Personalized Content Example</Link>
+          </li>
+          <li>
+            <Link href="/seo-friendly">SEO-Friendly Content Example</Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
